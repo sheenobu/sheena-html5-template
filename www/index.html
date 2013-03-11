@@ -32,16 +32,62 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="brand" href="#">todo-app</a>
+                    <a class="brand">todo-app</a>
                 </div>
             </div>
         </div>
 
         <div class="container">
 
+            <ul class="nav nav-tabs">
+              <li data-bind="css: { active: view() == 'home' }"><a data-bind="click: to.bind($data,'home'), css: { active: view() == 'home' }">Home</a></li>
+              <li data-bind="css: { active: view() == 'about' }"><a data-bind="click: to.bind($data,'about'), css: { active: view() == 'about' }">About</a></li>
+              <li data-bind="css: { active: view() == 'env' }"><a data-bind="click: to.bind($data,'env'), css: { active: view() == 'env' }">Env</a></li>
+             
+            </ul>
+
+            <div data-bind="visible: view() == 'about'">
+              <div class="row">
+                <div class="span3">
+                  <div class="well">
+                     This is some about text.
+                  </div>
+                </div>
+                <div class="span9">
+                  <div class="well">
+                    This is more about text.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div data-bind="visible: view() == 'home'">
+              <div class="row">
+                <div class="span12">
+                  <div class="well">
+                    <h4>Home</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div data-bind="visible: view() == 'env'">
+             <div class="row">
+                <div class="span12">
+                  <div class="well">
+                    <h4>Application Environment</h4>
+                    <ul>
+                      <li>Loading Test Data: <span data-bind="text: test">&nbsp;</span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+      
             <footer>
-                <p>&copy; </p>
+                <p>&copy;</p>
             </footer>
+
 
         </div> <!-- /container -->
 

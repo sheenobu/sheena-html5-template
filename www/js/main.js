@@ -7,17 +7,35 @@ function loadTestData(self) {
   });
 }
 
+function loadEnvData(s) {
+  s.test = ko.observable();
+  s.test(false); 
+
+  $.get("/env.yml", function(data) {
+    data = jsyaml.safeLoad(data);
+    
+    s.test(data.test);
+  });
+}
+
 function SampleViewModel() {
   var self = this;
   self.todos = ko.observableArray([]);
 
-  // if test {
+  loadEnvData(self);
+  
+  if(self.test()){
     loadTestData(self);
-  //}
+  }
 
-  Sammy(function() {
+  self.view = ko.observable();
 
-  }).run();
+  self.to = function(id) {
+    self.view(id);
+  }
+
+  self.to('home');
+
 }
 
 ko.applyBindings(new SampleViewModel());
